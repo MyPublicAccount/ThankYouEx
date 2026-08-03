@@ -1,229 +1,200 @@
-/* ===========================================
-   THANK YOU EX
-   SCRIPT PART 1
-=========================================== */
-
-const intro = document.getElementById("intro");
-const introLine = document.getElementById("introLine");
-
-const story = document.getElementById("story");
-
-const title = document.getElementById("title");
-const message = document.getElementById("message");
-
-const heart = document.getElementById("heart");
-
+const startScreen = document.getElementById("startScreen");
+const envelopeScene = document.getElementById("envelopeScene");
+const envelope = document.getElementById("envelope");
+const flap = document.querySelector(".flap");
+const paper = document.querySelector(".paper");
+const letterScene = document.getElementById("letterScene");
+const letterText = document.getElementById("letterText");
 const bgMusic = document.getElementById("bgMusic");
 
-const musicBtn = document.getElementById("musicBtn");
-const restartBtn = document.getElementById("restartBtn");
+const letter = `I don't know if this letter
+will ever find you.
 
-const roseContainer = document.getElementById("roseContainer");
-const particles = document.getElementById("particles");
+Maybe it isn't meant to.
 
-const introTexts = [
+But some words deserve
+to exist...
 
-"Some stories never really end...",
+even without an answer.
 
-"They simply become the reason we grow."
+Once...
 
-];
+I thought losing you
+meant losing myself.
 
-const storyPages = [
+I was wrong.
 
-{
-title:"Dear My Ex Wifey...",
-text:"I never thought silence could teach me more than words ever did."
-},
+Pain slowly became
+my teacher.
 
-{
-title:"Thank You.",
-text:"Thank you for every goodbye. Every tear became another lesson."
-},
+Silence became
+my friend.
 
-{
-title:"The Pain",
-text:"There were nights when sleep never came, only memories did."
-},
+Every sleepless night
+made me stronger.
 
-{
-title:"The Change",
-text:"Slowly I stopped asking why. I started asking who I wanted to become."
-},
+Every goodbye
+became another step
+towards the person
+I'm becoming today.
 
-{
-title:"Today",
-text:"I smile differently now. Not because everything is perfect... but because I finally found peace within myself."
-},
+So...
 
-{
-title:"My Wish",
-text:"I genuinely hope life gives you every happiness you once searched for."
-},
+Thank you.
 
-{
-title:"Goodbye",
-text:"Some people stay forever. Some people change us forever. Thank you for being part of my story."
-}
+Not because everything
+ended beautifully.
 
-];
+But because
+it changed me.
 
-let page = 0;
+I truly hope
+life gives you
+every happiness
+you deserve.
 
-function sleep(ms){
+As for me...
 
-return new Promise(resolve=>setTimeout(resolve,ms));
+I'll keep walking.
 
-}
+With gratitude.
 
-async function typeWriter(element,text,speed=45){
+Without regret.
 
-element.innerHTML="";
+Thank you...
 
-for(let i=0;i<text.length;i++){
+Goodbye.`;
 
-element.innerHTML+=text.charAt(i);
+let index = 0;
 
-await sleep(speed);
+async function startExperience(){
 
-}
+    startScreen.style.opacity = "0";
 
-}
+    setTimeout(()=>{
+        startScreen.style.display = "none";
+    },1000);
 
-async function showStory(){
+    try{
 
-story.style.opacity=1;
+        bgMusic.volume = 1;
+        await bgMusic.play();
 
-for(page=0;page<storyPages.length;page++){
+    }catch(e){
 
-title.classList.remove("fadeIn");
+        console.log(e);
 
-message.classList.remove("fadeIn");
+    }
 
-await sleep(200);
+    envelopeScene.style.opacity = "1";
+    envelopeScene.style.pointerEvents = "auto";
 
-title.innerHTML=storyPages[page].title;
-
-await typeWriter(message,storyPages[page].text);
-
-title.classList.add("fadeIn");
-
-message.classList.add("fadeIn");
-
-if(page===2){
-
-heart.classList.add("breakHeart");
+    setTimeout(openEnvelope,1800);
 
 }
 
-await sleep(5000);
+function openEnvelope(){
+
+    flap.style.transform = "rotateX(180deg)";
+
+    setTimeout(()=>{
+
+        paper.style.bottom = "20px";
+
+    },900);
+
+    setTimeout(showLetter,3500);
 
 }
 
-title.innerHTML="Thank You.";
+function showLetter(){
 
-message.innerHTML="Take care. Goodbye ❤️";
+    envelopeScene.style.opacity = "0";
 
-}
+    setTimeout(()=>{
 
-async function startIntro(){
+        envelopeScene.style.display = "none";
 
-for(let i=0;i<introTexts.length;i++){
+        letterScene.style.opacity = "1";
 
-introLine.innerHTML="";
+        typeLetter();
 
-await typeWriter(introLine,introTexts[i],55);
-
-await sleep(2600);
+    },1200);
 
 }
 
-intro.style.opacity=0;
+function typeLetter(){
 
-await sleep(1800);
+    if(index < letter.length){
 
-intro.style.display="none";
+        letterText.innerHTML += letter.charAt(index);
 
-showStory();
+        index++;
+
+        setTimeout(typeLetter,55);
+
+    }
 
 }
 
-window.onload=()=>{
-
-startIntro();
-
-};
+startScreen.addEventListener("click",startExperience);
 
 /* ===========================================
-   THANK YOU EX
-   SCRIPT PART 2
+   CINEMATIC EFFECTS
 =========================================== */
 
-/* ---------- Music ---------- */
+/* ---------- Rose Petals ---------- */
 
-async function playMusic() {
-    if (!bgMusic) return;
+const roseContainer = document.getElementById("roseContainer");
 
-    bgMusic.loop = true;
-    bgMusic.volume = 1.0;
+function createRose(){
 
-    try {
-        await bgMusic.play();
-        musicBtn.innerHTML = "🔊 Music";
-    } catch (e) {
-        console.log("Autoplay blocked until user interaction.");
-    }
+    const rose = document.createElement("div");
+
+    rose.innerHTML = "🌹";
+
+    rose.className = "rose";
+
+    rose.style.left = Math.random()*100+"%";
+
+    rose.style.fontSize = (16+Math.random()*12)+"px";
+
+    rose.style.animationDuration =
+    (8+Math.random()*6)+"s";
+
+    roseContainer.appendChild(rose);
+
+    setTimeout(()=>{
+
+        rose.remove();
+
+    },14000);
+
 }
 
-document.addEventListener(
-    "click",
-    () => {
-        playMusic();
-    },
-    { once: true }
-);
+setInterval(createRose,900);
 
-musicBtn.onclick = async () => {
+/* ---------- Floating Dust ---------- */
 
-    if (bgMusic.paused) {
+const particles=document.getElementById("particles");
 
-        await playMusic();
+function createDust(){
 
-    } else {
+    for(let i=0;i<50;i++){
 
-        bgMusic.pause();
+        const p=document.createElement("div");
 
-        musicBtn.innerHTML = "🔇 Music";
+        p.className="particle";
 
-    }
+        p.style.left=Math.random()*100+"%";
 
-};
+        p.style.top=Math.random()*100+"%";
 
-/* ---------- Replay ---------- */
+        p.style.animationDuration=
+        (10+Math.random()*12)+"s";
 
-restartBtn.onclick = () => {
-
-    location.reload();
-
-};
-
-/* ---------- Floating Particles ---------- */
-
-function createParticles() {
-
-    for (let i = 0; i < 90; i++) {
-
-        const p = document.createElement("div");
-
-        p.className = "particle";
-
-        p.style.left = Math.random() * 100 + "%";
-
-        p.style.animationDuration =
-            (8 + Math.random() * 12) + "s";
-
-        p.style.animationDelay =
-            Math.random() * 8 + "s";
+        p.style.animationDelay=
+        Math.random()*6+"s";
 
         particles.appendChild(p);
 
@@ -231,110 +202,50 @@ function createParticles() {
 
 }
 
-createParticles();
+createDust();
 
-/* ---------- Rose Petals ---------- */
+/* ---------- Paper Float ---------- */
 
-function createRose() {
+setInterval(()=>{
 
-    const rose = document.createElement("div");
+    const paperBox=document.getElementById("letter");
 
-    rose.className = "rose";
+    if(!paperBox) return;
 
-    rose.innerHTML = "🌹";
+    paperBox.animate([
 
-    rose.style.left = Math.random() * 100 + "%";
+        {transform:"translateY(0px)"},
 
-    rose.style.animationDuration =
-        (7 + Math.random() * 6) + "s";
+        {transform:"translateY(-5px)"},
 
-    rose.style.fontSize =
-        (18 + Math.random() * 14) + "px";
+        {transform:"translateY(0px)"}
 
-    roseContainer.appendChild(rose);
+    ],{
 
-    setTimeout(() => {
+        duration:3500
 
-        rose.remove();
+    });
 
-    }, 13000);
+},3500);
 
-}
+/* ---------- Fade Ending ---------- */
 
-setInterval(createRose, 900);
+function ending(){
 
-/* ---------- Shooting Stars ---------- */
+    document.body.animate([
 
-function shootingStar() {
+        {opacity:1},
 
-    const star = document.createElement("div");
+        {opacity:0}
 
-    star.className = "shootingStar";
+    ],{
 
-    star.style.top = Math.random() * 35 + "%";
+        duration:4000,
 
-    star.style.left = "-200px";
+        fill:"forwards"
 
-    document
-        .getElementById("background")
-        .appendChild(star);
-
-    setTimeout(() => {
-
-        star.remove();
-
-    }, 3000);
+    });
 
 }
 
-setInterval(shootingStar, 7000);
-
-/* ---------- Heart Pulse ---------- */
-
-setInterval(() => {
-
-    heart.style.transform = "scale(1.18)";
-
-    setTimeout(() => {
-
-        heart.style.transform = "scale(1)";
-
-    }, 300);
-
-}, 1800);
-
-/* ---------- Resume Music ---------- */
-
-document.addEventListener("visibilitychange", () => {
-
-    if (!document.hidden && bgMusic.paused) {
-
-        playMusic();
-
-    }
-
-});
-
-/* ---------- Ending ---------- */
-
-async function endingScene() {
-
-    await sleep(3000);
-
-    title.innerHTML = "Thank You.";
-
-    await typeWriter(
-        message,
-        "Every ending quietly becomes the beginning of someone stronger."
-    );
-
-    await sleep(5000);
-
-    title.innerHTML = "Goodbye.";
-
-    message.innerHTML =
-        "Made with ❤️ by <b>@ChinnuXbio</b>";
-
-}
-
-setTimeout(endingScene, 47000);
+setTimeout(ending,95000);
