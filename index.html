@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Thank You.</title>
 
@@ -14,7 +13,7 @@ content="width=device-width,initial-scale=1.0">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
@@ -22,15 +21,19 @@ content="width=device-width,initial-scale=1.0">
 
 <body>
 
-<div id="loader">
+<!-- Intro -->
 
-<div class="loader-text">
+<section id="intro">
 
-<span>Loading...</span>
+<div class="intro-text">
+
+<p id="introLine"></p>
 
 </div>
 
-</div>
+</section>
+
+<!-- Background -->
 
 <div id="background">
 
@@ -38,47 +41,89 @@ content="width=device-width,initial-scale=1.0">
 
 <div id="particles"></div>
 
+<div id="roseContainer"></div>
+
 </div>
 
-<main id="app">
+<!-- Heart -->
 
-<section class="glass">
+<div id="heartContainer">
 
-<h4 class="small-title">
+<div id="heart">
 
-For Someone Who Changed My Life
+❤️
 
-</h4>
+</div>
+
+</div>
+
+<!-- Story -->
+
+<section id="story">
+
+<div class="glass">
 
 <h1 id="title"></h1>
 
 <p id="message"></p>
 
-<button id="next">
-
-Continue
-
-</button>
+</div>
 
 </section>
 
-</main>
+<!-- Controls -->
 
-<footer>
+<div id="controls">
 
-<div>
+<button id="musicBtn">
 
-Made with ❤️ by
+🎵 Music
 
-<a href="https://t.me/ChinnuXbio" target="_blank">
+</button>
 
-@ChinnuXbio
+<button id="restartBtn">
+
+↻ Replay
+
+</button>
+
+<a href="https://t.me/ChinnuXbio"
+
+target="_blank">
+
+<button>
+
+💬 Telegram
+
+</button>
 
 </a>
 
 </div>
 
+<!-- Footer -->
+
+<footer>
+
+Made with ❤️ by
+
+<a href="https://t.me/ChinnuXbio">
+
+@ChinnuXbio
+
+</a>
+
 </footer>
+
+<audio
+id="bgMusic"
+loop>
+
+<source
+src="assets/audio/music.mp3"
+type="audio/mpeg">
+
+</audio>
 
 <script src="script.js"></script>
 
