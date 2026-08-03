@@ -1,17 +1,27 @@
-/* =========================
-   IMPORT FONTS
-========================= */
+/* ==========================================================
+   ThankYouEx v2.0
+   Part 1
+   ========================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Cormorant+Garamond:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600;700&display=swap');
 
-/* =========================
-RESET
-========================= */
+:root{
+
+--bg:#020202;
+--card:rgba(255,255,255,.07);
+--border:rgba(255,255,255,.08);
+--text:#ffffff;
+--muted:rgba(255,255,255,.65);
+--glow:rgba(255,255,255,.18);
+
+}
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
 html{
@@ -23,125 +33,60 @@ scroll-behavior:smooth;
 body{
 
 overflow:hidden;
+background:var(--bg);
+color:var(--text);
 
-background:#000;
-
-color:white;
-
-font-family:'Poppins',sans-serif;
+font-family:Poppins,sans-serif;
 
 }
 
-/* =========================
-LOADER
-========================= */
-
-#loader{
-
-position:fixed;
-
-inset:0;
-
-background:#000;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:9999;
-
-transition:1.5s;
-
-}
-
-.loader-text{
-
-font-size:34px;
-
-font-family:'Cormorant Garamond',serif;
-
-letter-spacing:6px;
-
-animation:pulse 2s infinite;
-
-color:white;
-
-}
-
-@keyframes pulse{
-
-0%{
-
-opacity:.25;
-
-}
-
-50%{
-
-opacity:1;
-
-}
-
-100%{
-
-opacity:.25;
-
-}
-
-}
-
-/* =========================
+/* ==========================================================
 BACKGROUND
-========================= */
+========================================================== */
 
 #background{
 
 position:fixed;
 
 top:0;
-
 left:0;
 
 width:100%;
-
 height:100%;
-
-background:
-radial-gradient(circle at top,#1d1d35,#070707 60%,#000);
 
 overflow:hidden;
 
-z-index:-5;
+z-index:-100;
+
+background:
+radial-gradient(circle at top,#22254d,#090909 65%,#000);
 
 }
 
-/* =========================
+/* ==========================================================
 STARS
-========================= */
+========================================================== */
 
 #stars{
 
 position:absolute;
 
 width:100%;
-
 height:100%;
 
 background-image:
 
-radial-gradient(white 1px,transparent 1px);
+radial-gradient(#ffffff 1px,transparent 1px);
 
-background-size:40px 40px;
+background-size:45px 45px;
 
 opacity:.22;
 
-animation:stars 120s linear infinite;
+animation:starsMove 140s linear infinite;
 
 }
 
-@keyframes stars{
+@keyframes starsMove{
 
 from{
 
@@ -151,15 +96,15 @@ transform:translateY(0);
 
 to{
 
-transform:translateY(-1200px);
+transform:translateY(-1800px);
 
 }
 
 }
 
-/* =========================
+/* ==========================================================
 PARTICLES
-========================= */
+========================================================== */
 
 #particles{
 
@@ -179,11 +124,11 @@ width:3px;
 
 height:3px;
 
-background:white;
-
 border-radius:100%;
 
-opacity:.45;
+background:white;
+
+opacity:.35;
 
 animation:float linear infinite;
 
@@ -193,13 +138,13 @@ animation:float linear infinite;
 
 0%{
 
-transform:translateY(120vh);
+transform:translateY(110vh);
 
 opacity:0;
 
 }
 
-10%{
+15%{
 
 opacity:.45;
 
@@ -221,13 +166,21 @@ opacity:0;
 
 }
 
-/* =========================
-MAIN
-========================= */
+/* ==========================================================
+INTRO
+========================================================== */
 
-#app{
+#intro{
 
-height:100vh;
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
 
 display:flex;
 
@@ -235,59 +188,106 @@ justify-content:center;
 
 align-items:center;
 
-padding:25px;
+background:#000;
 
-opacity:0;
+z-index:999;
 
-transition:1.5s;
+transition:2s;
 
 }
 
-/* =========================
-GLASS CARD
-========================= */
+.intro-text{
+
+text-align:center;
+
+padding:30px;
+
+}
+
+#introLine{
+
+font-size:40px;
+
+font-family:'Cormorant Garamond',serif;
+
+letter-spacing:2px;
+
+line-height:1.4;
+
+animation:pulse 2.5s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+opacity:.2;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:.2;
+
+}
+
+}
+
+/* ==========================================================
+STORY
+========================================================== */
+
+#story{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+height:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
+opacity:0;
+
+transition:2s;
+
+}
 
 .glass{
 
 width:100%;
 
-max-width:820px;
+max-width:900px;
 
-padding:60px;
+padding:70px;
 
 border-radius:30px;
 
-background:rgba(255,255,255,.05);
+background:var(--card);
 
 backdrop-filter:blur(18px);
 
-border:1px solid rgba(255,255,255,.08);
+border:1px solid var(--border);
 
 box-shadow:
 
-0 0 40px rgba(255,255,255,.05);
-
-text-align:center;
-
-}
-
-/* =========================
-TEXT
-========================= */
-
-.small-title{
-
-font-size:16px;
-
-font-weight:400;
-
-letter-spacing:4px;
-
-text-transform:uppercase;
-
-opacity:.65;
-
-margin-bottom:25px;
+0 0 60px rgba(255,255,255,.04);
 
 }
 
@@ -297,75 +297,228 @@ font-family:'Cormorant Garamond',serif;
 
 font-size:60px;
 
-font-weight:700;
+text-align:center;
 
 margin-bottom:35px;
 
-line-height:1.2;
+font-weight:700;
 
 text-shadow:
 
-0 0 30px rgba(255,255,255,.18);
+0 0 30px var(--glow);
 
 }
 
 #message{
 
-font-size:23px;
+font-size:24px;
 
 line-height:2;
 
-opacity:.92;
+text-align:center;
 
 min-height:220px;
 
+color:var(--muted);
+
 }
 
-/* =========================
-BUTTON
-========================= */
+/* ==========================================================
+HEART
+========================================================== */
 
-button{
+#heartContainer{
 
-margin-top:50px;
+position:fixed;
 
-padding:17px 55px;
+top:60px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:5;
+
+}
+
+#heart{
+
+font-size:70px;
+
+animation:heartbeat 1.5s infinite;
+
+filter:drop-shadow(0 0 20px crimson);
+
+}
+
+@keyframes heartbeat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+20%{
+
+transform:scale(1.2);
+
+}
+
+40%{
+
+transform:scale(1);
+
+}
+
+60%{
+
+transform:scale(1.18);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ==========================================================
+ROSE PETALS
+========================================================== */
+
+#roseContainer{
+
+position:absolute;
+
+inset:0;
+
+overflow:hidden;
+
+pointer-events:none;
+
+}
+
+.rose{
+
+position:absolute;
+
+top:-50px;
+
+font-size:18px;
+
+opacity:.8;
+
+animation:roseFall linear infinite;
+
+filter:drop-shadow(0 0 8px rgba(255,80,120,.4));
+
+}
+
+@keyframes roseFall{
+
+0%{
+
+transform:
+translateY(-60px)
+rotate(0deg);
+
+opacity:0;
+
+}
+
+10%{
+
+opacity:.9;
+
+}
+
+100%{
+
+transform:
+translateY(110vh)
+translateX(80px)
+rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+/* ==========================================================
+CONTROLS
+========================================================== */
+
+#controls{
+
+position:fixed;
+
+bottom:85px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:15px;
+
+z-index:100;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+#controls button{
+
+padding:14px 26px;
 
 border:none;
 
 border-radius:999px;
 
-background:white;
+background:rgba(255,255,255,.12);
 
-color:#000;
+color:white;
 
-font-size:18px;
+backdrop-filter:blur(12px);
 
 cursor:pointer;
 
+font-size:15px;
+
 transition:.35s;
 
-}
-
-button:hover{
-
-transform:translateY(-3px) scale(1.05);
-
-box-shadow:
-
-0 0 35px rgba(255,255,255,.35);
+border:1px solid rgba(255,255,255,.08);
 
 }
 
-/* =========================
+#controls button:hover{
+
+transform:translateY(-3px);
+
+background:white;
+
+color:black;
+
+box-shadow:0 0 30px rgba(255,255,255,.25);
+
+}
+
+/* ==========================================================
 FOOTER
-========================= */
+========================================================== */
 
 footer{
 
 position:fixed;
 
-bottom:25px;
+bottom:20px;
 
 left:0;
 
@@ -373,9 +526,13 @@ width:100%;
 
 text-align:center;
 
-font-size:15px;
+font-size:14px;
 
-opacity:.65;
+letter-spacing:1px;
+
+color:rgba(255,255,255,.65);
+
+z-index:50;
 
 }
 
@@ -383,33 +540,173 @@ footer a{
 
 color:white;
 
-text-decoration:none;
-
 font-weight:600;
+
+text-decoration:none;
 
 }
 
 footer a:hover{
 
+text-decoration:underline;
+
+}
+
+/* ==========================================================
+FADE EFFECTS
+========================================================== */
+
+.fadeIn{
+
+animation:fadeIn 1.4s ease forwards;
+
+}
+
+.fadeOut{
+
+animation:fadeOut 1.4s ease forwards;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes fadeOut{
+
+from{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+to{
+
+opacity:0;
+
+transform:translateY(-20px);
+
+}
+
+}
+
+/* ==========================================================
+HEART BREAK
+========================================================== */
+
+.breakHeart{
+
+animation:breakHeart 1.8s forwards;
+
+}
+
+@keyframes breakHeart{
+
+0%{
+
+transform:scale(1);
+
+filter:drop-shadow(0 0 20px crimson);
+
+}
+
+40%{
+
+transform:scale(1.25);
+
+}
+
+100%{
+
+transform:
+scale(.9)
+rotate(-12deg);
+
+opacity:.45;
+
+filter:blur(2px);
+
+}
+
+}
+
+/* ==========================================================
+SHOOTING STAR
+========================================================== */
+
+.shootingStar{
+
+position:absolute;
+
+width:180px;
+
+height:2px;
+
+background:linear-gradient(90deg,#fff,transparent);
+
+opacity:.8;
+
+animation:shoot 3s linear forwards;
+
+}
+
+@keyframes shoot{
+
+0%{
+
+transform:
+translate(-200px,-100px)
+rotate(35deg);
+
+opacity:0;
+
+}
+
+15%{
+
 opacity:1;
 
 }
 
-/* =========================
-MOBILE
-========================= */
+100%{
 
-@media(max-width:768px){
+transform:
+translate(140vw,110vh)
+rotate(35deg);
 
-.glass{
-
-padding:35px 25px;
+opacity:0;
 
 }
 
+}
+
+/* ==========================================================
+MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
 #title{
 
-font-size:42px;
+font-size:40px;
 
 }
 
@@ -417,23 +714,51 @@ font-size:42px;
 
 font-size:18px;
 
-line-height:1.9;
+line-height:1.8;
 
 min-height:180px;
 
 }
 
-button{
+.glass{
+
+padding:35px 25px;
+
+}
+
+#heart{
+
+font-size:50px;
+
+}
+
+#controls{
+
+bottom:75px;
+
+width:95%;
+
+}
+
+#controls button{
 
 width:100%;
 
 }
 
+#introLine{
+
+font-size:30px;
+
+padding:20px;
+
+}
+
 footer{
 
-font-size:13px;
+font-size:12px;
 
-padding:0 10px;
+padding:0 15px;
 
 }
 
