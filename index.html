@@ -5,33 +5,18 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>Thank You.</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<title>One Last Letter</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-
-<!-- Intro -->
-
-<section id="intro">
-
-<div class="intro-text">
-
-<p id="introLine"></p>
-
-</div>
-
-</section>
 
 <!-- Background -->
 
@@ -45,63 +30,60 @@
 
 </div>
 
-<!-- Heart -->
+<!-- Start Screen -->
 
-<div id="heartContainer">
+<section id="startScreen">
 
-<div id="heart">
+<div class="center">
 
-❤️
+<h1>💌</h1>
 
-</div>
+<h2>One Last Letter</h2>
 
-</div>
-
-<!-- Story -->
-
-<section id="story">
-
-<div class="glass">
-
-<h1 id="title"></h1>
-
-<p id="message"></p>
+<p>Tap to Open</p>
 
 </div>
 
 </section>
 
-<!-- Controls -->
+<!-- Envelope -->
 
-<div id="controls">
+<section id="envelopeScene">
 
-<button id="musicBtn">
+<div id="envelope">
 
-🎵 Music
+<div class="flap"></div>
 
-</button>
-
-<button id="restartBtn">
-
-↻ Replay
-
-</button>
-
-<a href="https://t.me/ChinnuXbio"
-
-target="_blank">
-
-<button>
-
-💬 Telegram
-
-</button>
-
-</a>
+<div class="paper"></div>
 
 </div>
 
-<!-- Footer -->
+</section>
+
+<!-- Letter -->
+
+<section id="letterScene">
+
+<div id="letter">
+
+<h1>Dear My Ex Wifey,</h1>
+
+<div id="letterText"></div>
+
+</div>
+
+</section>
+
+<audio
+id="bgMusic"
+loop
+preload="auto">
+
+<source
+src="assets/audio/music.mp3"
+type="audio/mpeg">
+
+</audio>
 
 <footer>
 
@@ -114,16 +96,6 @@ Made with ❤️ by
 </a>
 
 </footer>
-
-<audio
-id="bgMusic"
-loop>
-
-<source
-src="assets/audio/music.mp3"
-type="audio/mpeg">
-
-</audio>
 
 <script src="script.js"></script>
 
