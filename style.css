@@ -1,186 +1,58 @@
-/* ==========================================================
-   ThankYouEx v2.0
-   Part 1
-   ========================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600;700&display=swap');
-
-:root{
-
---bg:#020202;
---card:rgba(255,255,255,.07);
---border:rgba(255,255,255,.08);
---text:#ffffff;
---muted:rgba(255,255,255,.65);
---glow:rgba(255,255,255,.18);
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400&display=swap');
 
 *{
-
 margin:0;
 padding:0;
 box-sizing:border-box;
-
-}
-
-html{
-
-scroll-behavior:smooth;
-
 }
 
 body{
-
 overflow:hidden;
-background:var(--bg);
-color:var(--text);
-
+background:#050505;
 font-family:Poppins,sans-serif;
-
+color:white;
 }
 
-/* ==========================================================
-BACKGROUND
-========================================================== */
+/* Background */
 
 #background{
-
 position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-overflow:hidden;
-
-z-index:-100;
-
+inset:0;
 background:
-radial-gradient(circle at top,#22254d,#090909 65%,#000);
-
+radial-gradient(circle at top,#151515,#060606 60%,#000);
+z-index:-100;
 }
 
-/* ==========================================================
-STARS
-========================================================== */
-
 #stars{
-
 position:absolute;
-
 width:100%;
 height:100%;
-
 background-image:
-
-radial-gradient(#ffffff 1px,transparent 1px);
-
+radial-gradient(white 1px,transparent 1px);
 background-size:45px 45px;
-
-opacity:.22;
-
-animation:starsMove 140s linear infinite;
-
+opacity:.18;
+animation:starsMove 120s linear infinite;
 }
 
 @keyframes starsMove{
 
 from{
-
 transform:translateY(0);
-
 }
 
 to{
-
 transform:translateY(-1800px);
-
 }
 
 }
 
-/* ==========================================================
-PARTICLES
-========================================================== */
+/* Start Screen */
 
-#particles{
-
-position:absolute;
-
-inset:0;
-
-overflow:hidden;
-
-}
-
-.particle{
-
-position:absolute;
-
-width:3px;
-
-height:3px;
-
-border-radius:100%;
-
-background:white;
-
-opacity:.35;
-
-animation:float linear infinite;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(110vh);
-
-opacity:0;
-
-}
-
-15%{
-
-opacity:.45;
-
-}
-
-90%{
-
-opacity:.45;
-
-}
-
-100%{
-
-transform:translateY(-120vh);
-
-opacity:0;
-
-}
-
-}
-
-/* ==========================================================
-INTRO
-========================================================== */
-
-#intro{
+#startScreen{
 
 position:fixed;
 
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
+inset:0;
 
 display:flex;
 
@@ -190,70 +62,67 @@ align-items:center;
 
 background:#000;
 
-z-index:999;
+z-index:100;
 
-transition:2s;
+cursor:pointer;
+
+transition:1.2s;
 
 }
 
-.intro-text{
+.center{
 
 text-align:center;
 
-padding:30px;
+}
+
+.center h1{
+
+font-size:90px;
+
+animation:pulse 2s infinite;
 
 }
 
-#introLine{
+.center h2{
 
 font-size:40px;
 
-font-family:'Cormorant Garamond',serif;
+margin-top:15px;
+
+font-family:Caveat,cursive;
+
+}
+
+.center p{
+
+margin-top:18px;
+
+font-size:18px;
+
+opacity:.8;
 
 letter-spacing:2px;
-
-line-height:1.4;
-
-animation:pulse 2.5s infinite;
 
 }
 
 @keyframes pulse{
 
-0%{
+0%{transform:scale(1);}
 
-opacity:.2;
+50%{transform:scale(1.12);}
 
-}
-
-50%{
-
-opacity:1;
+100%{transform:scale(1);}
 
 }
 
-100%{
+/* Envelope */
 
-opacity:.2;
-
-}
-
-}
-
-/* ==========================================================
-STORY
-========================================================== */
-
-#story{
+#envelopeScene{
 
 position:fixed;
 
-top:0;
-
-left:0;
-
-width:100%;
-height:100%;
+inset:0;
 
 display:flex;
 
@@ -261,266 +130,155 @@ justify-content:center;
 
 align-items:center;
 
-padding:20px;
-
 opacity:0;
 
-transition:2s;
+pointer-events:none;
+
+transition:1.2s;
 
 }
 
-.glass{
+#envelope{
+
+width:320px;
+
+height:220px;
+
+position:relative;
+
+background:#d9c2a3;
+
+border-radius:8px;
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.45);
+
+overflow:hidden;
+
+}
+
+.paper{
+
+position:absolute;
+
+left:20px;
+
+right:20px;
+
+bottom:-170px;
+
+height:250px;
+
+background:#fdf8ef;
+
+border-radius:8px;
+
+transition:2.5s;
+
+box-shadow:0 0 25px rgba(0,0,0,.25);
+
+}
+
+.flap{
+
+position:absolute;
+
+top:0;
+
+left:0;
 
 width:100%;
 
-max-width:900px;
+height:110px;
 
-padding:70px;
+background:#cba982;
 
-border-radius:30px;
+clip-path:polygon(0 0,100% 0,50% 100%);
 
-background:var(--card);
+transform-origin:top;
 
-backdrop-filter:blur(18px);
-
-border:1px solid var(--border);
-
-box-shadow:
-
-0 0 60px rgba(255,255,255,.04);
-
-}
-
-#title{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:60px;
-
-text-align:center;
-
-margin-bottom:35px;
-
-font-weight:700;
-
-text-shadow:
-
-0 0 30px var(--glow);
-
-}
-
-#message{
-
-font-size:24px;
-
-line-height:2;
-
-text-align:center;
-
-min-height:220px;
-
-color:var(--muted);
-
-}
-
-/* ==========================================================
-HEART
-========================================================== */
-
-#heartContainer{
-
-position:fixed;
-
-top:60px;
-
-left:50%;
-
-transform:translateX(-50%);
+transition:1.4s;
 
 z-index:5;
 
 }
 
-#heart{
+/* Letter */
 
-font-size:70px;
-
-animation:heartbeat 1.5s infinite;
-
-filter:drop-shadow(0 0 20px crimson);
-
-}
-
-@keyframes heartbeat{
-
-0%{
-
-transform:scale(1);
-
-}
-
-20%{
-
-transform:scale(1.2);
-
-}
-
-40%{
-
-transform:scale(1);
-
-}
-
-60%{
-
-transform:scale(1.18);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
-
-}
-
-/* ==========================================================
-ROSE PETALS
-========================================================== */
-
-#roseContainer{
-
-position:absolute;
-
-inset:0;
-
-overflow:hidden;
-
-pointer-events:none;
-
-}
-
-.rose{
-
-position:absolute;
-
-top:-50px;
-
-font-size:18px;
-
-opacity:.8;
-
-animation:roseFall linear infinite;
-
-filter:drop-shadow(0 0 8px rgba(255,80,120,.4));
-
-}
-
-@keyframes roseFall{
-
-0%{
-
-transform:
-translateY(-60px)
-rotate(0deg);
-
-opacity:0;
-
-}
-
-10%{
-
-opacity:.9;
-
-}
-
-100%{
-
-transform:
-translateY(110vh)
-translateX(80px)
-rotate(720deg);
-
-opacity:0;
-
-}
-
-}
-
-/* ==========================================================
-CONTROLS
-========================================================== */
-
-#controls{
+#letterScene{
 
 position:fixed;
 
-bottom:85px;
-
-left:50%;
-
-transform:translateX(-50%);
+inset:0;
 
 display:flex;
 
-gap:15px;
-
-z-index:100;
-
-flex-wrap:wrap;
-
 justify-content:center;
 
-}
+align-items:center;
 
-#controls button{
+opacity:0;
 
-padding:14px 26px;
+transition:1.5s;
 
-border:none;
+pointer-events:none;
 
-border-radius:999px;
-
-background:rgba(255,255,255,.12);
-
-color:white;
-
-backdrop-filter:blur(12px);
-
-cursor:pointer;
-
-font-size:15px;
-
-transition:.35s;
-
-border:1px solid rgba(255,255,255,.08);
+padding:20px;
 
 }
 
-#controls button:hover{
+#letter{
 
-transform:translateY(-3px);
+width:95%;
 
-background:white;
+max-width:820px;
 
-color:black;
+height:82vh;
 
-box-shadow:0 0 30px rgba(255,255,255,.25);
+background:#faf5ea;
+
+color:#2d2d2d;
+
+border-radius:12px;
+
+padding:45px;
+
+overflow:auto;
+
+box-shadow:
+0 30px 70px rgba(0,0,0,.45);
 
 }
 
-/* ==========================================================
-FOOTER
-========================================================== */
+#letter h1{
+
+font-family:Caveat,cursive;
+
+font-size:52px;
+
+margin-bottom:30px;
+
+}
+
+#letterText{
+
+font-family:Caveat,cursive;
+
+font-size:34px;
+
+line-height:1.8;
+
+white-space:pre-line;
+
+}
+
+/* Footer */
 
 footer{
 
 position:fixed;
 
-bottom:20px;
-
-left:0;
+bottom:18px;
 
 width:100%;
 
@@ -528,19 +286,13 @@ text-align:center;
 
 font-size:14px;
 
-letter-spacing:1px;
-
-color:rgba(255,255,255,.65);
-
-z-index:50;
+color:#ffffff90;
 
 }
 
 footer a{
 
 color:white;
-
-font-weight:600;
 
 text-decoration:none;
 
@@ -549,217 +301,5 @@ text-decoration:none;
 footer a:hover{
 
 text-decoration:underline;
-
-}
-
-/* ==========================================================
-FADE EFFECTS
-========================================================== */
-
-.fadeIn{
-
-animation:fadeIn 1.4s ease forwards;
-
-}
-
-.fadeOut{
-
-animation:fadeOut 1.4s ease forwards;
-
-}
-
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-@keyframes fadeOut{
-
-from{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-to{
-
-opacity:0;
-
-transform:translateY(-20px);
-
-}
-
-}
-
-/* ==========================================================
-HEART BREAK
-========================================================== */
-
-.breakHeart{
-
-animation:breakHeart 1.8s forwards;
-
-}
-
-@keyframes breakHeart{
-
-0%{
-
-transform:scale(1);
-
-filter:drop-shadow(0 0 20px crimson);
-
-}
-
-40%{
-
-transform:scale(1.25);
-
-}
-
-100%{
-
-transform:
-scale(.9)
-rotate(-12deg);
-
-opacity:.45;
-
-filter:blur(2px);
-
-}
-
-}
-
-/* ==========================================================
-SHOOTING STAR
-========================================================== */
-
-.shootingStar{
-
-position:absolute;
-
-width:180px;
-
-height:2px;
-
-background:linear-gradient(90deg,#fff,transparent);
-
-opacity:.8;
-
-animation:shoot 3s linear forwards;
-
-}
-
-@keyframes shoot{
-
-0%{
-
-transform:
-translate(-200px,-100px)
-rotate(35deg);
-
-opacity:0;
-
-}
-
-15%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:
-translate(140vw,110vh)
-rotate(35deg);
-
-opacity:0;
-
-}
-
-}
-
-/* ==========================================================
-MOBILE
-========================================================== */
-
-@media(max-width:768px){
-
-#title{
-
-font-size:40px;
-
-}
-
-#message{
-
-font-size:18px;
-
-line-height:1.8;
-
-min-height:180px;
-
-}
-
-.glass{
-
-padding:35px 25px;
-
-}
-
-#heart{
-
-font-size:50px;
-
-}
-
-#controls{
-
-bottom:75px;
-
-width:95%;
-
-}
-
-#controls button{
-
-width:100%;
-
-}
-
-#introLine{
-
-font-size:30px;
-
-padding:20px;
-
-}
-
-footer{
-
-font-size:12px;
-
-padding:0 15px;
-
-}
 
 }
