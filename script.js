@@ -77,3 +77,107 @@ Goodbye.`;
 
 let index = 0;
 let started = false;
+
+/* ===========================================
+   START EXPERIENCE
+=========================================== */
+
+async function startExperience(){
+
+    if(started) return;
+
+    started = true;
+
+    startScreen.style.opacity = "0";
+
+    setTimeout(()=>{
+
+        startScreen.style.display="none";
+
+    },1000);
+
+    try{
+
+        bgMusic.volume = 1;
+
+        bgMusic.loop = true;
+
+        await bgMusic.play();
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+    envelopeScene.style.opacity="1";
+
+    envelopeScene.style.pointerEvents="auto";
+
+}
+
+/* ===========================================
+   CLICK WAX SEAL
+=========================================== */
+
+seal.addEventListener("click",()=>{
+
+    seal.style.transition=".5s";
+
+    seal.style.transform="scale(1.4) rotate(15deg)";
+
+    seal.style.opacity="0";
+
+    setTimeout(()=>{
+
+        paperImg.style.transform="translateY(-210px)";
+
+    },350);
+
+    setTimeout(showLetter,2500);
+
+});
+
+/* ===========================================
+   SHOW LETTER
+=========================================== */
+
+function showLetter(){
+
+    envelopeScene.style.opacity="0";
+
+    envelopeScene.style.pointerEvents="none";
+
+    setTimeout(()=>{
+
+        envelopeScene.style.display="none";
+
+        letterScene.style.display="flex";
+
+        letterScene.style.opacity="1";
+
+        letterScene.style.pointerEvents="auto";
+
+        typeLetter();
+
+    },900);
+
+}
+
+/* ===========================================
+   TYPEWRITER
+=========================================== */
+
+function typeLetter(){
+
+    if(index>=letter.length) return;
+
+    letterText.innerHTML+=letter.charAt(index);
+
+    index++;
+
+    setTimeout(typeLetter,45);
+
+}
+
+startScreen.addEventListener("click",startExperience);
