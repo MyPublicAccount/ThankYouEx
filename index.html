@@ -5,14 +5,16 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>One Last Letter</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -36,11 +38,11 @@ content="width=device-width, initial-scale=1.0">
 
 <div class="center">
 
-<h1>💌</h1>
+<div class="mailIcon">💌</div>
 
-<h2>One Last Letter</h2>
+<h1>One Last Letter</h1>
 
-<p>Tap to Open</p>
+<p>Tap To Open</p>
 
 </div>
 
@@ -52,9 +54,20 @@ content="width=device-width, initial-scale=1.0">
 
 <div id="envelope">
 
-<div class="flap"></div>
+<img
+id="paperImg"
+src="assets/images/paper.png"
+alt="Paper">
 
-<div class="paper"></div>
+<img
+id="envelopeImg"
+src="assets/images/envelope.png"
+alt="Envelope">
+
+<img
+id="seal"
+src="assets/images/wax_seal.png"
+alt="Wax Seal">
 
 </div>
 
@@ -66,7 +79,11 @@ content="width=device-width, initial-scale=1.0">
 
 <div id="letter">
 
-<h1>Dear My Ex Wifey,</h1>
+<h1>
+
+Dear My Ex Wifey,
+
+</h1>
 
 <div id="letterText"></div>
 
@@ -74,28 +91,46 @@ content="width=device-width, initial-scale=1.0">
 
 </section>
 
-<audio
-id="bgMusic"
-loop
-preload="auto">
+<!-- Controls -->
 
-<source
-src="assets/audio/music.mp3"
-type="audio/mpeg">
+<div id="controls">
 
-</audio>
+<button id="restartBtn">
+
+Replay Story
+
+</button>
+
+</div>
+
+<!-- Footer -->
 
 <footer>
 
 Made with ❤️ by
 
-<a href="https://t.me/ChinnuXbio">
+<a
+href="https://t.me/ChinnuXbio"
+target="_blank">
 
 @ChinnuXbio
 
 </a>
 
 </footer>
+
+<!-- Music -->
+
+<audio
+id="bgMusic"
+preload="auto"
+loop>
+
+<source
+src="assets/audio/music.mp3"
+type="audio/mpeg">
+
+</audio>
 
 <script src="script.js"></script>
 
