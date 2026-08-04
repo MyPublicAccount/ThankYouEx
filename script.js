@@ -181,3 +181,163 @@ function typeLetter(){
 }
 
 startScreen.addEventListener("click",startExperience);
+
+/* ===========================================
+   PNG ROSE PETALS
+=========================================== */
+
+const roseContainer = document.getElementById("roseContainer");
+
+const petalImages = [
+    "assets/Petals/petal1.png",
+    "assets/Petals/Petal2.png",
+    "assets/Petals/Petal3.png"
+];
+
+function createRose(){
+
+    const petal = document.createElement("img");
+
+    petal.className = "rose";
+
+    petal.src =
+    petalImages[
+        Math.floor(
+            Math.random()*petalImages.length
+        )
+    ];
+
+    petal.style.left =
+    Math.random()*100+"%";
+
+    petal.style.width =
+    (18+Math.random()*18)+"px";
+
+    petal.style.animationDuration =
+    (7+Math.random()*5)+"s";
+
+    petal.style.transform =
+    `rotate(${Math.random()*360}deg)`;
+
+    roseContainer.appendChild(petal);
+
+    setTimeout(()=>{
+
+        petal.remove();
+
+    },13000);
+
+}
+
+setInterval(createRose,350);
+
+/* ===========================================
+   FLOATING DUST
+=========================================== */
+
+const particles =
+document.getElementById("particles");
+
+for(let i=0;i<80;i++){
+
+    const p =
+    document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left =
+    Math.random()*100+"%";
+
+    p.style.top =
+    Math.random()*100+"%";
+
+    p.style.animationDelay =
+    Math.random()*8+"s";
+
+    p.style.animationDuration =
+    (8+Math.random()*8)+"s";
+
+    particles.appendChild(p);
+
+}
+
+/* ===========================================
+   LETTER FLOAT
+=========================================== */
+
+setInterval(()=>{
+
+    const paper =
+    document.getElementById("letter");
+
+    if(!paper) return;
+
+    paper.animate([
+
+        {
+
+            transform:"translateY(0px)"
+
+        },
+
+        {
+
+            transform:"translateY(-5px)"
+
+        },
+
+        {
+
+            transform:"translateY(0px)"
+
+        }
+
+    ],{
+
+        duration:4000
+
+    });
+
+},4000);
+
+/* ===========================================
+   REPLAY BUTTON
+=========================================== */
+
+restartBtn.addEventListener("click",()=>{
+
+    location.reload();
+
+});
+
+/* ===========================================
+   CINEMATIC ENDING
+=========================================== */
+
+function ending(){
+
+    document.body.animate([
+
+        {
+
+            opacity:1
+
+        },
+
+        {
+
+            opacity:0
+
+        }
+
+    ],{
+
+        duration:5000,
+
+        fill:"forwards"
+
+    });
+
+}
+
+setTimeout(ending,100000);
